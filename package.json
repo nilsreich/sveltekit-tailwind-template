@@ -32,7 +32,10 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@supabase/auth-helpers-sveltekit": "^0.8.6",
+		"@supabase/supabase-js": "^2.4.0",
 		"@xstate/svelte": "^2.0.1",
+		"remeda": "^1.6.0",
 		"xstate": "^4.35.2"
 	}
 }
