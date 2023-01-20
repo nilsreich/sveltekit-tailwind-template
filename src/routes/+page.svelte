@@ -17,7 +17,7 @@
 		if (name !== '') {
 			todos.update((todos) => {
 				const newTodo = {
-					id: todos.length + 1,
+					id: self.crypto.randomUUID(),
 					text: name,
 					done: false
 				};
