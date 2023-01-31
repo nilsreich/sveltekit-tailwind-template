@@ -1,55 +1,37 @@
-<script lang='ts'>
-  import { onMount, onDestroy } from 'svelte'
-  import { Editor } from '@tiptap/core'
-  import StarterKit from '@tiptap/starter-kit'
+<script lang="ts">
+	import { onMount, onDestroy } from 'svelte';
+	import { Editor } from '@tiptap/core';
+	import StarterKit from '@tiptap/starter-kit';
+	import Underline from '@tiptap/extension-underline';
 
-  let element: HTMLElement
-  let editor: Editor
+	let element: HTMLElement;
+	export let editor: Editor;
 
-  onMount(() => {
-    editor = new Editor({
-      element: element,
-      extensions: [
-        StarterKit,
-      ],
-      content: '<p>Hello World! 🌍️ </p>',
-      onTransaction: () => {
-        // force re-render so `editor.isActive` works as expected
-        editor = editor
-      },
-    })
-  })
+	onMount(() => {
+		editor = new Editor({
+			element: element,
+			extensions: [StarterKit, Underline],
+			editorProps: {
+				attributes: {
+					class: 'prose prose-sm sm:prose lg:prose-lg xl:prose-2xl m-5 focus:outline-none'
+				}
+			},
+			content: '<p>Hello World! 🌍️ </p>',
+			onTransaction: () => {
+				// force re-render so `editor.isActive` works as expected
+				editor = editor;
+			}
+		});
+	});
 
-  onDestroy(() => {
-    if (editor) {
-      editor.destroy()
-    }
-  })
+	onDestroy(() => {
+		if (editor) {
+			editor.destroy();
+		}
+	});
+
 </script>
 
-{#if editor}
-  <button
-    on:click={() => editor.chain().focus().toggleHeading({ level: 1}).run()}
-    class:active={editor.isActive('heading', { level: 1 })}
-  >
-    H1
-  </button>
-  <button
-    on:click={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
-    class:active={editor.isActive('heading', { level: 2 })}
-  >
-    H2
-  </button>
-  <button on:click={() => editor.chain().focus().setParagraph().run()} class:active={editor.isActive('paragraph')}>
-    P
-  </button>
-{/if}
 
 <div bind:this={element} />
 
-<style>
-  button.active {
-    background: black;
-    color: white;
-  }
-</style>
