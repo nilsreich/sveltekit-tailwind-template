@@ -76,100 +76,20 @@
 		editor.chain().focus().setHardBreak().run();
 	};
 
-	const link = () => {
-		editor.chain().focus().extendMarkRange('link').setLink({ href: 'https://tiptap.dev' }).run();
+const alignLeft = () => {
+		editor.chain().focus().setTextAlign('left').run();
 	};
 
-	const unlink = () => {
-		editor.chain().focus().unsetLink().run();
+	const alignCenter = () => {
+		editor.chain().focus().setTextAlign('center').run();
 	};
 
-	const image = () => {
-		editor.chain().focus().setImage({ src: 'https://picsum.photos/seed/picsum/200/300' }).run();
+	const alignRight = () => {
+		editor.chain().focus().setTextAlign('right').run();
 	};
 
-	const table = () => {
-		editor.chain().focus().setTable({ rows: 2, columns: 2 }).run();
-	};
-
-	const tableHeader = () => {
-		editor.chain().focus().toggleTableHeader().run();
-	};
-
-	const tableRow = () => {
-		editor.chain().focus().toggleTableRow().run();
-	};
-
-	const tableColumn = () => {
-		editor.chain().focus().toggleTableColumn().run();
-	};
-
-	const tableCell = () => {
-		editor.chain().focus().toggleTableCell().run();
-	};
-
-	const tableDeleteRow = () => {
-		editor.chain().focus().deleteTableRow().run();
-	};
-
-	const tableDeleteColumn = () => {
-		editor.chain().focus().deleteTableColumn().run();
-	};
-
-	const tableAddRow = () => {
-		editor.chain().focus().addTableRow().run();
-	};
-
-	const tableAddColumn = () => {
-		editor.chain().focus().addColumn().run();
-	};
-
-	const tableMergeCells = () => {
-		editor.chain().focus().mergeTableCells().run();
-	};
-
-	const tableSplitCell = () => {
-		editor.chain().focus().splitTableCell().run();
-	};
-
-	const tableToggleHeaderCell = () => {
-		editor.chain().focus().toggleTableHeaderCell().run();
-	};
-
-	const tableToggleHeaderColumn = () => {
-		editor.chain().focus().toggleTableHeaderColumn().run();
-	};
-
-	const tableToggleHeaderRow = () => {
-		editor.chain().focus().toggleTableHeaderRow().run();
-	};
-
-	const tableDeleteTable = () => {
-		editor.chain().focus().deleteTable().run();
-	};
-
-	const textColor = () => {
-		editor.chain().focus().setTextColor({ color: '#ff0000' }).run();
-	};
-
-	const backgroundColor = () => {
-		editor.chain().focus().setBackgroundColor({ color: '#ff0000' }).run();
-	};
-
-	const textHighlight = () => {
-		editor.chain().focus().setTextHighlight({ color: '#ff0000' }).run();
-	};
-
-	const clearMarks = () => {
-		editor.chain().focus().clearNodes().run();
-	};
-
-	const clearFormatting = () => {
-		editor.chain().focus().clearNodes().run();
-	};
-
-	const clearAll = () => {
-		editor.chain().focus().clear().run();
+	const alignJustify = () => {
+		editor.chain().focus().setTextAlign('justify').run();
 	};
 
 	const undo = () => {
@@ -180,7 +100,7 @@
 		editor.chain().focus().redo().run();
 	};
 
-	const format = (style) => {
+	const format = (style:string) => {
 		switch (style) {
 			case 'heading1':
 				heading();
@@ -369,7 +289,7 @@
 					: editor?.isActive('paragraph')
 					? 'paragraph'
 					: ''}
-				on:change={(e) => format(e.target.value)}
+				on:change={(event) => format(event.target.value)}
 				class="border-l border-slate-300 bg-white pl-4 pr-12 text-xs font-medium tracking-wide outline-none"
 			>
 				<option value="heading1" class="">Heading 1</option>
@@ -426,6 +346,96 @@
 					xmlns="http://www.w3.org/2000/svg"
 					><path
 						d="M5.67494 3.50017C5.67494 3.25164 5.87641 3.05017 6.12494 3.05017H10.6249C10.8735 3.05017 11.0749 3.25164 11.0749 3.50017C11.0749 3.7487 10.8735 3.95017 10.6249 3.95017H9.00587L7.2309 11.05H8.87493C9.12345 11.05 9.32493 11.2515 9.32493 11.5C9.32493 11.7486 9.12345 11.95 8.87493 11.95H4.37493C4.1264 11.95 3.92493 11.7486 3.92493 11.5C3.92493 11.2515 4.1264 11.05 4.37493 11.05H5.99397L7.76894 3.95017H6.12494C5.87641 3.95017 5.67494 3.7487 5.67494 3.50017Z"
+						fill="currentColor"
+						fill-rule="evenodd"
+						clip-rule="evenodd"
+					/></svg
+				>
+			</button>
+			<button
+				on:click={strike}
+				class={`${editor?.isActive('strike') ? 'bg-neutral-200' : 'bg-white'} p-2 rounded`}
+			>
+				<svg
+					width="15"
+					height="15"
+					viewBox="0 0 15 15"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+					><path
+						d="M5.00003 3.25C5.00003 2.97386 4.77617 2.75 4.50003 2.75C4.22389 2.75 4.00003 2.97386 4.00003 3.25V7.10003H2.49998C2.27906 7.10003 2.09998 7.27912 2.09998 7.50003C2.09998 7.72094 2.27906 7.90003 2.49998 7.90003H4.00003V8.55C4.00003 10.483 5.56703 12.05 7.50003 12.05C9.43303 12.05 11 10.483 11 8.55V7.90003H12.5C12.7209 7.90003 12.9 7.72094 12.9 7.50003C12.9 7.27912 12.7209 7.10003 12.5 7.10003H11V3.25C11 2.97386 10.7762 2.75 10.5 2.75C10.2239 2.75 10 2.97386 10 3.25V7.10003H5.00003V3.25ZM5.00003 7.90003V8.55C5.00003 9.93071 6.11932 11.05 7.50003 11.05C8.88074 11.05 10 9.93071 10 8.55V7.90003H5.00003Z"
+						fill="currentColor"
+						fill-rule="evenodd"
+						clip-rule="evenodd"
+					/></svg
+				>
+			</button>
+			<button
+				on:click={alignLeft}
+				class={`${editor?.isActive({ textAlign: 'left' }) ? 'bg-neutral-200' : 'bg-white'} p-2 rounded`}
+			>
+				<svg
+					width="15"
+					height="15"
+					viewBox="0 0 15 15"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+					><path
+						d="M2 4.5C2 4.22386 2.22386 4 2.5 4H12.5C12.7761 4 13 4.22386 13 4.5C13 4.77614 12.7761 5 12.5 5H2.5C2.22386 5 2 4.77614 2 4.5ZM2 7.5C2 7.22386 2.22386 7 2.5 7H7.5C7.77614 7 8 7.22386 8 7.5C8 7.77614 7.77614 8 7.5 8H2.5C2.22386 8 2 7.77614 2 7.5ZM2 10.5C2 10.2239 2.22386 10 2.5 10H10.5C10.7761 10 11 10.2239 11 10.5C11 10.7761 10.7761 11 10.5 11H2.5C2.22386 11 2 10.7761 2 10.5Z"
+						fill="currentColor"
+						fill-rule="evenodd"
+						clip-rule="evenodd"
+					/></svg
+				>
+			</button>
+			<button
+				on:click={alignCenter}
+				class={`${editor?.isActive({ textAlign: 'center' }) ? 'bg-neutral-200' : 'bg-white'} p-2 rounded`}
+			>
+				<svg
+					width="15"
+					height="15"
+					viewBox="0 0 15 15"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+					><path
+						d="M2 4.5C2 4.22386 2.22386 4 2.5 4H12.5C12.7761 4 13 4.22386 13 4.5C13 4.77614 12.7761 5 12.5 5H2.5C2.22386 5 2 4.77614 2 4.5ZM4 7.5C4 7.22386 4.22386 7 4.5 7H10.5C10.7761 7 11 7.22386 11 7.5C11 7.77614 10.7761 8 10.5 8H4.5C4.22386 8 4 7.77614 4 7.5ZM3 10.5C3 10.2239 3.22386 10 3.5 10H11.5C11.7761 10 12 10.2239 12 10.5C12 10.7761 11.7761 11 11.5 11H3.5C3.22386 11 3 10.7761 3 10.5Z"
+						fill="currentColor"
+						fill-rule="evenodd"
+						clip-rule="evenodd"
+					/></svg
+				></button
+			>
+			<button
+				on:click={alignRight}
+				class={`${editor?.isActive({ textAlign: 'right' }) ? 'bg-neutral-200' : 'bg-white'} p-2 rounded`}
+			>
+				<svg
+					width="15"
+					height="15"
+					viewBox="0 0 15 15"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+					><path
+						d="M2 4.5C2 4.22386 2.22386 4 2.5 4H12.5C12.7761 4 13 4.22386 13 4.5C13 4.77614 12.7761 5 12.5 5H2.5C2.22386 5 2 4.77614 2 4.5ZM7 7.5C7 7.22386 7.22386 7 7.5 7H12.5C12.7761 7 13 7.22386 13 7.5C13 7.77614 12.7761 8 12.5 8H7.5C7.22386 8 7 7.77614 7 7.5ZM4 10.5C4 10.2239 4.22386 10 4.5 10H12.5C12.7761 10 13 10.2239 13 10.5C13 10.7761 12.7761 11 12.5 11H4.5C4.22386 11 4 10.7761 4 10.5Z"
+						fill="currentColor"
+						fill-rule="evenodd"
+						clip-rule="evenodd"
+					/></svg
+				>
+			</button>
+			<button
+				on:click={alignJustify}
+				class={`${editor?.isActive({ textAlign: 'justify' }) ? 'bg-neutral-200' : 'bg-white'} p-2 rounded`}
+			>
+				<svg
+					width="15"
+					height="15"
+					viewBox="0 0 15 15"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+					><path
+						d="M2.5 4C2.22386 4 2 4.22386 2 4.5C2 4.77614 2.22386 5 2.5 5H12.5C12.7761 5 13 4.77614 13 4.5C13 4.22386 12.7761 4 12.5 4H2.5ZM2 7.5C2 7.22386 2.22386 7 2.5 7H12.5C12.7761 7 13 7.22386 13 7.5C13 7.77614 12.7761 8 12.5 8H2.5C2.22386 8 2 7.77614 2 7.5ZM2 10.5C2 10.2239 2.22386 10 2.5 10H12.5C12.7761 10 13 10.2239 13 10.5C13 10.7761 12.7761 11 12.5 11H2.5C2.22386 11 2 10.7761 2 10.5Z"
 						fill="currentColor"
 						fill-rule="evenodd"
 						clip-rule="evenodd"
